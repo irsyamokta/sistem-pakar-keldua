@@ -50,15 +50,22 @@ if (isset($_GET["act"])) {
     } else if ($act == "ubahSolusi") {
         $id_solusi = $_GET["id_solusi"];
         ubahSolusi($id_solusi);
-    } else if($act == "ulang"){
+    } else if ($act == "ulang") {
         ulang();
     }
 }
 
-function ulang(){
-    session_unset();
-    session_destroy();
-    header("location: test.php");
+function ulang()
+{
+    // session_unset();
+    // session_destroy();
+    // header("location: test.php");
+
+    $_SESSION['id_gejala'] = 1;
+    $_SESSION['persentase'] = [];
+    $_SESSION['role'] = 1;
+    echo "<script>document.location.href = 'test.php';</script>";
+
 }
 
 function register()
@@ -105,7 +112,8 @@ function registerPakar()
     }
 }
 
-function login(){
+function login()
+{
     global $koneksi;
     $nama = htmlspecialchars($_POST["nama"]);
     $input_pass = htmlspecialchars($_POST['password']);
